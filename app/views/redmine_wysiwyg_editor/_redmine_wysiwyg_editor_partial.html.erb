@@ -18,45 +18,43 @@ if content_for(:header_tags).present? && content_for(:header_tags).include?('/js
     attachments = t ? t.attachments.map {|a| {id: a.id, name: a.filename} } : []
     %>
     <% html_tag_allowed = textilizable('<div></div>').include?('<div></div>') %>
+
     <style type="text/css">
-.jstTabs,
-.jstElements,
-.jstEditor {
-  /* To avoid flickering of the original editor. */
-  visibility: hidden;
-}
+        .jstTabs,
+        .jstElements,
+        .jstEditor {
+            /* To avoid flickering of the original editor. */
+            visibility: hidden;
+        }
 
-#content .jstBlock .jstTabs.tabs {
-  width: 100%;
-}
+        #content .jstBlock .jstTabs.tabs {
+            width: 100%;
+        }
 
-#content .jstBlock .jstTabs ul {
-  height: auto;
-}
+        #content .jstBlock .jstTabs ul {
+            /*height: auto;*/
+        }
 
-#content .jstBlock .jstTabs li {
-  height: auto;
-  margin: 0;
-}
 
-#content .jstBlock .jstTabs ul li:not(.tab-elements) {
-  display: none;
-}
 
-#content .jstBlock .jstTabs .jstElements {
-  height: auto;
-}
+        #content .jstBlock .jstTabs ul li:not(.tab-elements) {
+            display: none;
+        }
+
+        #content .jstBlock .jstTabs .jstElements {
+            /*height: auto;*/
+        }
     </style>
     <script>
-function initRedmineWysiwygEditor() {
-  var setVisible = function() {
-    // Fixed for IE 11
-    const ua = navigator.userAgent;
-    if (ua.indexOf('Trident') !== -1) {
-      $('.jstElements').parent().addClass('tab-elements');
-    }
+      function initRedmineWysiwygEditor() {
+        var setVisible = function() {
+          // Fixed for IE 11
+          const ua = navigator.userAgent;
+          if (ua.indexOf('Trident') !== -1) {
+            $('.jstElements').parent().addClass('tab-elements');
+          }
 
-    $('.jstTabs, .jstElements, .jstEditor').css('visibility', 'visible');
+          $('.jstTabs, .jstElements, .jstEditor').css('visibility', 'visible');
   };
 
   var previewTab = $('.jstTabs .tab-preview');
