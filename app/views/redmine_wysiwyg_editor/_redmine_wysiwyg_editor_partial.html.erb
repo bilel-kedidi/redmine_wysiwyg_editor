@@ -34,15 +34,19 @@ if content_for(:header_tags).present? && content_for(:header_tags).include?('/js
         #content .jstBlock .jstTabs ul {
             /*height: auto;*/
         }
-
-
+        #content .tabs {
+          height: 36px !important;
+        }
+        #content .tabs ul li {
+            margin-bottom: 5px !important;
+        }
 
         #content .jstBlock .jstTabs ul li:not(.tab-elements) {
             display: none;
         }
 
         #content .jstBlock .jstTabs .jstElements {
-            /*height: auto;*/
+            height: 18px !important;
         }
     </style>
     <script>
