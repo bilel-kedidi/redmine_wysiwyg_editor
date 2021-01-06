@@ -1,5 +1,4 @@
-<%
-if content_for(:header_tags).present? && content_for(:header_tags).include?('/jstoolbar/')
+<% if content_for(:header_tags).present? && content_for(:header_tags).include?('/jstoolbar/')
   content_for :header_tags do %>
     <%= javascript_include_tag('tinymce/tinymce.min.js', plugin: 'redmine_wysiwyg_editor') %>
     <%
@@ -20,12 +19,22 @@ if content_for(:header_tags).present? && content_for(:header_tags).include?('/js
     <% html_tag_allowed = textilizable('<div></div>').include?('<div></div>') %>
 
     <style type="text/css">
+      <% if controller_name.in?(['deals', 'invoices', 'orders']) && action_name.in?(['edit', 'new', 'copy'] ) %>
+      .notes .jstTabs,
+      .notes .jstElements,
+      .notes .jstEditor {
+          /* To avoid flickering of the original editor. */
+          visibility: hidden;
+      }
+      <% else %>
         .jstTabs,
         .jstElements,
         .jstEditor {
             /* To avoid flickering of the original editor. */
             visibility: hidden;
         }
+
+      <% end %>
 
         #content .jstBlock .jstTabs.tabs {
             width: 100%;
